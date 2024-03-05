@@ -10,6 +10,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/", employeeRouter);
 app.use("/", signupRouter);
+
 app.get("/student", async (req, res) => {
   let result = await Student.find();
   res.send(result);
@@ -38,5 +39,10 @@ app.put("/student/:id", async (req, res) => {
   );
   res.send(result);
 });
+
+app.get("*", async (req, res) => {
+ res.send("Invalid URL");
+});
+
 
 app.listen(4000);
